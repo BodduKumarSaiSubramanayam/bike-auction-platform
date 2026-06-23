@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 // Store the SQLite database at the root of the project.
 // Use a separate database file for test runs.
+const dbFile = process.env.NODE_ENV === 'test' ? (process.env.TEST_DB_NAME || 'test.db') : 'database.db';
 const dbPath = process.env.SQLITE_DB_PATH ? path.resolve(process.env.SQLITE_DB_PATH) : path.resolve(__dirname, '../../', dbFile);
 
 let databaseInstance = null;
