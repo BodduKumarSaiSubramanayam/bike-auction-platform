@@ -64,7 +64,7 @@ const metricsInterval = setInterval(() => {
 }, 5000);
 
 // Only start listening if run directly (not in tests)
-const isMain = import.meta.url === pathToFileURL(process.argv[1]).href;
+const isMain = import.meta.url === pathToFileURL(process.argv[1]).href || process.env.NODE_ENV !== 'test';
 if (isMain) {
   server.listen(PORT, () => {
     logger.info(`Bike Auction Platform Server running at http://localhost:${PORT}`);
