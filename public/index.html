@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vutto | Premium Motorcycle Auction Platform</title>
+  <meta name="description" content="Bid on and win premium, certified pre-owned motorcycles in real-time auctions. Track bidding history, live viewer counts, and complete secure simulated checkouts.">
+  
+  <!-- Modern Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css">
+  
+  <!-- Lucide Icons Library (via CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Favicon Mock -->
+  <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=32">
+</head>
+<body>
+  <!-- Main Single Page Application Target -->
+  <div id="app"></div>
+
+  <!-- Audio elements for micro-animations / bidding sound feedback -->
+  <audio id="sound-bid" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
+  <audio id="sound-success" src="https://assets.mixkit.co/active_storage/sfx/2019/2019-84.wav" preload="auto"></audio>
+  <audio id="sound-gavel" src="https://assets.mixkit.co/active_storage/sfx/953/953-84.wav" preload="auto"></audio>
+
+  <!-- Main ES Module Script entry point -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

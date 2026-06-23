@@ -1,0 +1,73 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         String    // "BUYER" or "ADMIN"
+  balance      Float     @default(50000.0) // Mock bidding credit for testing
+  createdAt    DateTime  @default(now())
+  
+  // Relations
+  auctionsCreated Auction[] @relation("CreatedAuctions")
+  auctionsWon     Auction[] @relation("WonAuctions")
+  bids            Bid[]     @relation("UserBids")
+}
+
+model Auction {
+  id           String    @id @default(uuid())
+  title        String
+  description  String
+  make         String
+  model        String
+  year         Int
+  mileage      Int
+  image        String    // URL or baseline assets path
+  startPrice   Float
+  reservePrice Float
+  currentBid   Float     @default(0.0)
+  increment    Float     @default(500.0) // Minimum amount a new bid must exceed current bid by
+  status       String    // "SCHEDULED", "ACTIVE", "ENDED", "CANCELLED"
+  startTime    DateTime
+  endTime      DateTime
+  createdAt    DateTime  @default(now())
+
+  // Creator
+  creatorId    String
+  creator      User      @relation("CreatedAuctions", fields: [creatorId], references: [id])
+
+  // Winner (optional, filled upon end)
+  winnerId     String?
+  winner       User?     @relation("WonAuctions", fields: [winnerId], references: [id])
+
+  // Relations
+  bids         Bid[]     @relation("AuctionBids")
+}
+
+model Bid {
+  id        String   @id @default(uuid())
+  auctionId String
+  bidderId  String
+  amount    Float
+  timestamp DateTime @default(now())
+
+  // Relations
+  auction   Auction  @relation("AuctionBids", fields: [auctionId], references: [id], onDelete: Cascade)
+  bidder    User     @relation("UserBids", fields: [bidderId], references: [id], onDelete: Cascade)
+}
+
+model SystemLog {
+  id        String   @id @default(uuid())
+  level     String   // "INFO", "WARN", "ERROR"
+  message   String
+  details   String?  // Stack trace or metadata as JSON string
+  timestamp DateTime @default(now())
+}

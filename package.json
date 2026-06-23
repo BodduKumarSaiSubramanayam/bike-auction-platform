@@ -1,0 +1,10 @@
+{
+  "name": "bike-auction-platform",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "agy-node server/index.js",
+    "test": "agy-node --test server/tests/*.test.js"
+  }
+}

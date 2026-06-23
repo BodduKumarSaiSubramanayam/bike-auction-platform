@@ -1,0 +1,23 @@
+# SQLite Databases
+database.db
+test-auth.db
+test-auctions.db
+*.db
+*.db-journal
+*.db-wal
+
+# Log Files
+*.log
+logs/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+
+# Node Modules
+node_modules/
+
+# OS Files
+.DS_Store
+Thumbs.db
